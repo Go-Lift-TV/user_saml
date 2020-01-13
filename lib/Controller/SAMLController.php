@@ -119,6 +119,10 @@ class SAMLController extends Controller {
 				throw new \InvalidArgumentException('No valid uid given, please check your attribute mapping. Given uid: ' . $uid);
 			}
 
+			if ($uid == "Guest") {
+			  throw new NoUserFoundException('UID Guest Denied Access!');
+			}
+
 			$uid = $this->userBackend->testEncodedObjectGUID($uid);
 
 			// if this server acts as a global scale master and the user is not
